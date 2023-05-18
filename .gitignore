@@ -46,6 +46,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
+#mis carpetas
 .practica
+.frontEnd
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode
