@@ -48,5 +48,5 @@ $RECYCLE.BIN/
 
 #mis carpetas
 .practica
-.frontEnd
+/frontEnd
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode

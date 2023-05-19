@@ -1,68 +1,130 @@
-const myHeading = document.querySelector("h1");
-myHeading.textContent = "PRACTICA JS PLATZI!!";
-
-//const h2Heading = document.querySelector('h2');
-//h2Heading.textContent = 'HOLAAA SOY H2';
-
-// h1 { color: red}
-// .parrafo {///}
-// #pid {..}
-
-const h1 = document.querySelector('h1');
-const p = document.querySelector('p');
-const parrafito = document.querySelector('.parrafito');
-const pid = document.querySelector('#pid');
-const input = document.querySelector('input');
-
-//console.log({
-//    h1,
-//    p,
-//    parrafito,
-//    pid,
-//    input
-//});
-//
-//console.log(h1);
-//convierte a HTML el textto de la variable
-h1.innerHTML = 'SUPER PRACTICA JS PLATZI'
-
-//agarra un atributo de una variable
-//console.log('Este es el atributte: '+h1.getAttribute('marca')); 
-// cambia el valor de un atributo
-//h1.setAttribute('marca', 'Pepsi Cola');
-//console.log(h1.getAttribute('marca'));
-
-//agregar una clase
-//h1.classList.add('Hola');
-
-//classList.contains
-//classList.toggle
-
-//agregar imagenes 
-
-//const img = document.createElement('img');
-//img.setAttribute('src', 'https://static.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest/scale-to-width-down/1200?cb=20170716092103');
-//
-//
-//console.log(img);
-//
-//// agregar el elemento despues 
-//pid.append(img);
+const Emailbutton = document.querySelector('.navbar-email');
+const cartButtonMenu = document.querySelector('.navbar-shopping-cart');
+const menuHamburguerButton = document.querySelector('.menu');
 
 
-const input1 = document.querySelector('#calculo1');
-const input2 = document.querySelector('#calculo2');
-const btn = document.querySelector('#btnCalcular');
-const resultF = document.querySelector('#result');
-const form = document.querySelector('#submit');
+const mobileMenu = document.querySelector('.mobile-menu');
+const Aside = document.querySelector('.product-detail')
+const desktopMenu = document.querySelector('.desktop-menu');
+
+const cardsContainer = document.querySelector('.cards-container');
 
 
+// ADDEVENTLISTENER
+Emailbutton.addEventListener('click', toggleDesktopMenu);
+menuHamburguerButton.addEventListener('click', toggleMobileMenu);
+cartButtonMenu.addEventListener('click', toggleAsideMenu);
 
-function sumarInputsValues(event){
-    const iResults = (parseInt(input1.value) + parseInt(input2.value));
-    resultF.innerText = 'Resultado: ' + iResults;
-    event.preventDefault();
+
+//FUNCTIONS
+
+
+//menu email Button
+function toggleDesktopMenu() {
+    const isAsideClosed = Aside.classList.contains('inactive');
+
+    if(!isAsideClosed){
+        Aside.classList.add('inactive');
+    }
+    desktopMenu.classList.toggle('inactive');
+
+
 }
 
-form.addEventListener('submit', sumarInputsValues);
 
+
+//menu hamburguer mobile
+function toggleMobileMenu() {
+    const IsAsideClosed = Aside.classList.contains('inactive');
+
+    if(!IsAsideClosed){
+        Aside.classList.add('inactive');
+    }
+    mobileMenu.classList.toggle('inactive');
+}
+
+//menu carrito Aside
+function toggleAsideMenu() {
+    const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
+
+    if(!isMobileMenuClosed){
+        mobileMenu.classList.add('inactive');
+    }
+
+    Aside.classList.toggle('inactive');
+    
+    
+}
+
+
+
+
+
+
+const productList = [];
+
+productList.push({
+    name: 'Bike',
+    price: 120,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+});
+
+productList.push({
+    name: 'Pantalla',
+    price: 12000,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+});
+
+productList.push({
+    name: 'Computador',
+    price: 12021212,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+});
+
+
+function renderProducts(arr){
+    for(product of arr){
+
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+    
+        //product = {name, price, image}
+    
+        const productImg = document.createElement('img');
+        productImg.setAttribute('src', product.image);
+    
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product-info');
+        
+    
+        const productInfoDiv = document.createElement('div');
+    
+        const productPrice = document.createElement('p');
+        productPrice.innerText = '$' + product.price;
+    
+        const productName = document.createElement('p');
+        productName.innerText = product.name;
+        
+     
+    
+    
+        const productInfoFigure = document.createElement('figure');
+        const productimgCart = document.createElement('img');
+        productimgCart.setAttribute('src', './icons/bt_add_to_cart.svg');
+        
+    
+        //append
+        cardsContainer.appendChild(productCard);
+        //append
+        productCard.append(productImg, productInfo);
+        //append
+        productInfo.append(productInfoDiv, productInfoFigure)
+        //append
+        productInfoDiv.append(productPrice, productName);
+        //append
+        productInfoFigure.appendChild(productimgCart);
+    
+    }
+}
+
+renderProducts(productList);
