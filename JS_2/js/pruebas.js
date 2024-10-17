@@ -75,6 +75,7 @@ class GetSetPerson {
 person2 = new GetSetPerson('Miguel', 26, 'Dev');
 
 console.log(person2);
+console.log(person2.name);
 
 
 
